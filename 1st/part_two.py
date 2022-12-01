@@ -5,10 +5,10 @@ topThree = [0, 0, 0]
 for row in file:
     if row != "\n":
         elfInv += int(row)
-        if elfInv > topThree[2]:
-            topThree[2] = elfInv
+        if elfInv > topThree[0]:
+            topThree[0] = elfInv
     else:
-        topThree.sort(reverse=True)
+        topThree.sort()
         elfInv = 0
 
 print(sum(topThree))
