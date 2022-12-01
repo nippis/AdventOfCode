@@ -1,4 +1,3 @@
-max = 0
 file = open("[YourInputFilePath]\input.txt", "r")
 elfInv = 0
 topThree = [0, 0, 0]
@@ -10,7 +9,6 @@ for row in file:
     else:
         topThree.sort()
         elfInv = 0
-
 topThree.sort()
 print(topThree[2])
 print(sum(topThree))
