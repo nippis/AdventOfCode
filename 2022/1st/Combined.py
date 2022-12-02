@@ -12,3 +12,4 @@ for row in file:
 topThree.sort()
 print(topThree[2])
 print(sum(topThree))
+file.close()
