@@ -11,7 +11,6 @@ int main() {
         a += (opp==you?1:(you>>2&opp|you<<1&opp?0:2))*3 + (you>>1)+1;
         b += (((you&1)?(opp&1?opp<<2:opp>>1):(you&2?opp:(opp&4?opp>>2:opp<<1)))>>1)+1 + (you>>1)*3;
     }
-    std::cout << a << std::endl;
-    std::cout << b << std::endl;
+    std::cout << a << std::endl << b << std::endl;
     return 0;
 }
