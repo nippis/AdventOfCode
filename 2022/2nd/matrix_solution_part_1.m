@@ -1,23 +1,34 @@
 opp_shapes = ["A" "B" "C"].';
 your_shapes = ["X" "Y" "Z"];
-shape_points =  [1 2 3]; % rock paper scissors
-result = [1 2 0; 0 1 2; 2 0 1]; % 0 loss, 1 draw, 2 win
-result_factor = 3;
-result_points = result*result_factor;
+shapes =  [1 2 3]; % rock paper scissors
+results = [1 2 0; 0 1 2; 2 0 1]; % 0 loss, 1 draw, 2 win
+factor = 3;
 
-strategy_guide = readmatrix("input.txt", "OutputType", "string");
+guide = readmatrix("input.txt", "OutputType", "string"); % Strategy guide
 
-points = 0;
-points_b = 0;
-for i = 1:size(strategy_guide, 1)
-    opp = [0 0 0].';
-    you = [0 0 0];
-    for j = 1:3
-        opp(j) = (opp_shapes(j) == strategy_guide(i, 1));
-        you(j) = (your_shapes(j) == strategy_guide(i, 2));
-    end
+a = 0;
+b = 0;
+for i = 1:size(guide, 1)
+    opp = opp_shapes == guide(i, 1);
+    you = your_shapes == guide(i, 2);
     round = opp*you;
-    points = points + result_points.*round + shape_points*you.'*round;
-
+    a = a + results.*round*factor + shapes*you.'*round;
+    desired_shapes = you*results(2,:).'*ones(3) == results;
+    b = b + opp.'*desired_shapes*shapes.' + you*results(2,:).'*factor;
 end
-sum(points, 'all')
+
+a = sum(a, 'all')
+b
+
+
+
+
+
+
+
+
+
+
+
+
+
