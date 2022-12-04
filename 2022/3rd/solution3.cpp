@@ -3,11 +3,13 @@
 #include <string>
 #include <vector>
 
+#include "../solutions.hh"
+
 int priority(char a) {return (int)a - (std::islower(a) ? 96 : 38);}
 
-int main()
+std::pair<int, int> day3()
 {
-  std::ifstream file("input.txt");
+  std::ifstream file("inputs/input3.txt");
   std::string row;
   int prioritySum1 = 0, prioritySum2 = 0;
   std::vector<std::string> group;
@@ -35,6 +37,5 @@ int main()
       group.clear();
     }
   }
-  std::cout << prioritySum1 << std::endl;
-  std::cout << prioritySum2 << std::endl;
+  return {prioritySum1, prioritySum2};
 }

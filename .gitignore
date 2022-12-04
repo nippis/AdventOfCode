@@ -1,5 +1,6 @@
 *.log
 *.asv
 *.out
+*.o
 *.exe
 *.vscode*

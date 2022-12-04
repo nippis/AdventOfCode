@@ -2,6 +2,8 @@
 #include <fstream>
 #include <vector>
 
+#include "../solutions.hh"
+
 int getLimits(std::string row, std::vector<int>& limits)
 {
   limits.clear();
@@ -19,19 +21,18 @@ int getLimits(std::string row, std::vector<int>& limits)
   return limits.size();
 }
 
-int main()
+std::pair<int, int> day4()
 {
-  std::ifstream file("input.txt");
+  std::ifstream file("inputs/input4.txt");
   std::string row;
-  std::vector<int> limits;
+  std::vector<int> l;
   int a = 0, b = 0;
-  while (getline(file, row))
+  while (getline(file, row) && getLimits(row, l))
   {
-    getLimits(row, limits);
-    a += (limits.at(0)>=limits.at(2) && limits.at(1)<=limits.at(3) ||
-          limits.at(0)<=limits.at(2) && limits.at(1)>=limits.at(3));
-    b += (limits.at(1)>=limits.at(2) && limits.at(0)<=limits.at(2) ||
-          limits.at(3)>=limits.at(0) && limits.at(2)<=limits.at(0));
+    a += (l[0]>=l[2] && l[1]<=l[3] ||
+          l[0]<=l[2] && l[1]>=l[3]);
+    b += (l[1]>=l[2] && l[0]<=l[2] ||
+          l[3]>=l[0] && l[2]<=l[0]);
   }
-  std::cout << a << std::endl << b << std::endl;
+  return {a, b};
 }

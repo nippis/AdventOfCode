@@ -1,9 +1,12 @@
 #include <fstream>
 #include <iostream>
 
-int main() {
+#include "../solutions.hh"
+
+std::pair<int, int> day2() 
+{
     std::string row;
-    std::ifstream file ("input.txt");
+    std::ifstream file ("inputs/input2.txt");
     int a = 0, b = 0;
     while (getline(file, row)) {
         int opp = 1<<(int)row.at(0)-65;
@@ -11,6 +14,5 @@ int main() {
         a += (opp==you?1:(you>>2&opp|you<<1&opp?0:2))*3 + (you>>1)+1;
         b += (((you&1)?(opp&1?opp<<2:opp>>1):(you&2?opp:(opp&4?opp>>2:opp<<1)))>>1)+1 + (you>>1)*3;
     }
-    std::cout << a << std::endl << b << std::endl;
-    return 0;
+    return {a, b};
 }
