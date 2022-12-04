@@ -4,15 +4,14 @@
 
 #include "../solutions.hh"
 
-bool getLimits(const std::string& row, int* l, int i = 0)
+bool getLimits(const std::string& row, int* l)
 {
-  std::string lstr[4];
+  int i = 0, is2dig = 0;
   for (char a : row)
   {
-    if (!std::isdigit(a)) i++;
-    else lstr[i] += a;
+    if (!std::isdigit(a) && ++i) is2dig = 0;
+    else l[i] = is2dig++?l[i]*10+a:a;
   }
-  for (int j=0; j<4; j++) l[j]=std::stoi(lstr[j]);
   return true;
 }
 
