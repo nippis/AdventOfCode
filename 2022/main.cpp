@@ -18,7 +18,7 @@ void printRow(int i, std::pair<int, int> values, int dur, int dur2)
   << " |"<< std::endl;
 }
 
-int main()
+int main(int argc, char** argv)
 {
    std::vector<std::pair<int, int>(*)()> dayFunctions =
     {
@@ -39,7 +39,7 @@ int main()
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
     start = std::chrono::high_resolution_clock::now();
-    for (int i = 0; i<1000; i++) func();
+    if (argc > 1) for (int i = 0; i<1000; i++) func();
     stop = std::chrono::high_resolution_clock::now();
     auto duration2 = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
     printRow(i, values, duration.count(), duration2.count());
