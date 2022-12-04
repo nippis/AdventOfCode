@@ -1,21 +1,25 @@
 #include "../solutions.hh"
 
-bool getLimits(const std::string& row, int* l)
+bool getLimits(std::ifstream& file, int* l)
 {
   int i = 0, is2dig = 0;
-  for (char a : row)
+  char a;
+  while (file.get(a))
   {
-    if (!std::isdigit(a) && ++i) is2dig = 0;
+    if (!std::isdigit(a) && ++i) 
+    {
+      is2dig = 0;
+      if (i>=4) return true;
+    }
     else l[i] = is2dig++?l[i]*10+a:a;
   }
-  return true;
+  return false;
 }
 
 std::pair<int, int> day4(std::ifstream file)
 {
-  std::string row;
   int l[4], a = 0, b = 0;
-  while (getline(file, row) && getLimits(row, l))
+  while (getLimits(file, l))
   {
     a += (l[0]>=l[2] && l[1]<=l[3] || l[0]<=l[2] && l[1]>=l[3]);
     b += (l[1]>=l[2] && l[0]<=l[2] || l[3]>=l[0] && l[2]<=l[0]);
