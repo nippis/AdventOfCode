@@ -2,14 +2,6 @@
 #include <chrono>
 #include "solutions.hh"
 
-std::string whitespace(int length)
-{
-  std::string space = "";
-  for (int i = 0; i<length; i++)
-    space += " ";
-  return space;
-}
-
 void printRow(int i, std::pair<int, int> values, int dur)
 {
   std::string a = std::to_string(values.first);

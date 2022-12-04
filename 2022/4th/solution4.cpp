@@ -16,15 +16,14 @@ bool getLimits(std::string row, int* l, int i = 0)
   return true;
 }
 
-std::pair<int, int> day4(std::ifstream file, std::string row)
+std::pair<int, int> day4(std::ifstream file)
 {
+  std::string row;
   int l[4], a = 0, b = 0;
   while (getline(file, row) && getLimits(row, l))
   {
-    a += (l[0]>=l[2] && l[1]<=l[3] ||
-          l[0]<=l[2] && l[1]>=l[3]);
-    b += (l[1]>=l[2] && l[0]<=l[2] ||
-          l[3]>=l[0] && l[2]<=l[0]);
+    a += (l[0]>=l[2] && l[1]<=l[3] || l[0]<=l[2] && l[1]>=l[3]);
+    b += (l[1]>=l[2] && l[0]<=l[2] || l[3]>=l[0] && l[2]<=l[0]);
   }
   return {a, b};
 }
