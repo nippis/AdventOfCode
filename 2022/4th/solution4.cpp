@@ -1,5 +1,3 @@
-#include <fstream>
-
 #include "../solutions.hh"
 
 bool getLimits(const std::string& row, int* l)
