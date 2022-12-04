@@ -5,9 +5,8 @@
 
 int priority(char a) {return (int)a - (std::islower(a) ? 96 : 38);}
 
-std::pair<int, int> day3()
+std::pair<int, int> day3(std::ifstream file)
 {
-  std::ifstream file("inputs/input3.txt");
   std::string row;
   int prioritySum1 = 0, prioritySum2 = 0;
   std::vector<std::string> group;

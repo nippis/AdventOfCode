@@ -17,9 +17,10 @@ int main()
    std::vector<std::pair<int, int>(*)()> dayFunctions =
     {
       [](){return day1();},
-      [](){return day2();},
-      [](){return day3();},
+      [](){return day2(std::ifstream("inputs/input2.txt"));},
+      [](){return day3(std::ifstream("inputs/input3.txt"));},
       [](){return day4(std::ifstream("inputs/input4.txt"));},
+      [](){return day5(std::ifstream("inputs/input5.txt"));},
     };
 
   std::cout << "| Day    Part 1    Part 2   Time   |" << std::endl;

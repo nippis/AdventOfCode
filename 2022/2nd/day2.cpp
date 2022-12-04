@@ -1,9 +1,8 @@
 #include "../solutions.hh"
 
-std::pair<int, int> day2() 
+std::pair<int, int> day2(std::ifstream file) 
 {
     std::string row;
-    std::ifstream file ("inputs/input2.txt");
     int a = 0, b = 0;
     while (getline(file, row)) {
         int opp = 1<<(int)row.at(0)-65;
