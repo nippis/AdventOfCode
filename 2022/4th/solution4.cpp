@@ -4,7 +4,7 @@
 
 #include "../solutions.hh"
 
-bool getLimits(std::string row, int* l, int i = 0)
+bool getLimits(const std::string& row, int* l, int i = 0)
 {
   std::string lstr[4];
   for (char a : row)
