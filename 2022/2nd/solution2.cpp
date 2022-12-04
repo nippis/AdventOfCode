@@ -1,6 +1,3 @@
-#include <fstream>
-#include <iostream>
-
 #include "../solutions.hh"
 
 std::pair<int, int> day2() 
