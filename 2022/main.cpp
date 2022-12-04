@@ -27,7 +27,7 @@ int main()
       [](){return day1();},
       [](){return day2();},
       [](){return day3();},
-      [](){return day4();},
+      [](){return day4(std::ifstream("inputs/input4.txt"));},
     };
 
   std::cout << "| Day    Part 1    Part 2   Time   |" << std::endl;
