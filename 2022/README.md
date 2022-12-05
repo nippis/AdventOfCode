@@ -4,6 +4,11 @@ Terminal program that calculates and prints answers for all puzzles of the year 
 make
 ./main.out [any character to run averaged timing]
 ```
+and on Windows with MinGW installed
+```
+mingw32-make
+./main.out [any character to run averaged timing]
+```
 
 ## C++ run times averaged from 10,000 cycles
 
