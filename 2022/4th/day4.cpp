@@ -16,7 +16,7 @@ bool getLimits(std::ifstream& file, int* l)
   return false;
 }
 
-std::pair<int, int> day4(std::ifstream file)
+std::pair<std::string, std::string> day4(std::ifstream file)
 {
   int l[4], a = 0, b = 0;
   while (getLimits(file, l))
@@ -24,5 +24,5 @@ std::pair<int, int> day4(std::ifstream file)
     a += (l[0]>=l[2] && l[1]<=l[3] || l[0]<=l[2] && l[1]>=l[3]);
     b += (l[1]>=l[2] && l[0]<=l[2] || l[3]>=l[0] && l[2]<=l[0]);
   }
-  return {a, b};
+  return {std::to_string(a), std::to_string(b)};
 }

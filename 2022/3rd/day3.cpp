@@ -5,7 +5,7 @@
 
 int priority(char a) {return (int)a - (std::islower(a) ? 96 : 38);}
 
-std::pair<int, int> day3(std::ifstream file)
+std::pair<std::string, std::string> day3(std::ifstream file)
 {
   std::string row;
   int prioritySum1 = 0, prioritySum2 = 0;
@@ -34,5 +34,5 @@ std::pair<int, int> day3(std::ifstream file)
       group.clear();
     }
   }
-  return {prioritySum1, prioritySum2};
+  return {std::to_string(prioritySum1), std::to_string(prioritySum2)};
 }
