@@ -12,8 +12,12 @@ void printRow(int i, std::pair<std::string, std::string>& values, int dur, int d
   << whitespace(5-d.size()) << d 
   << whitespace(15-a.size()) << a 
   << whitespace(15-b.size()) << b 
-  << whitespace(7-du.size()) << du << " \xC2\xB5" << "s" 
-  << whitespace(7-du2.size()) << du2 << " \xC2\xB5" << "s" 
+  << whitespace(2);
+  std::printf("%.3f", (double)dur/1000);
+  std::cout << " ms" 
+  << whitespace(2);
+  std::printf("%.3f", (double)dur2/10000000);
+  std::cout << " ms" 
   << "  |"<< std::endl;
 }
 
