@@ -65,11 +65,10 @@ int part2(ftn* node, int minToDelete)
 std::pair<std::string, std::string> day7(std::ifstream file)
 {
   std::string row;
-  ftn* node = construct_tree(file);
-  int sum1 = 0;
-  node->m_size = calc_sizes(node);
-  int minToDelete = 30000000 - (70000000 - node->m_size);
-  std::pair<std::string, std::string> result = {std::to_string(part1(node)), std::to_string(part2(node, minToDelete))};
-  delete node;
+  ftn* rootNode = construct_tree(file);
+  int minToDelete = 30000000 - 70000000 + calc_sizes(rootNode);
+  std::pair<std::string, std::string> result = 
+    {std::to_string(part1(rootNode)), std::to_string(part2(rootNode, minToDelete))};
+  delete rootNode;
   return result;
 }
