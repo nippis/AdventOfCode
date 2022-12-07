@@ -3,11 +3,11 @@
 
 struct file_tree_node
 {
-  file_tree_node(std::string name) : m_name(name) {};
-  int findChild(const std::string& name) 
+  file_tree_node(const std::string& name) : m_name(name) {};
+  std::shared_ptr<file_tree_node> findChild(const std::string& name) 
   {
-    for (int i=0; i<m_children.size(); i++) if (m_children.at(i)->m_name == name) return i;
-    return -1;
+    for (auto child : m_children) if (child->m_name == name) return child;
+    return nullptr;
   }
 
   std::string m_name;
@@ -29,7 +29,7 @@ ftnp construct_tree(std::ifstream& file)
     {
       if (row.at(5) == '/') node = std::make_shared<ftn>("/");
       else if (row.find("..") == 5) node = node->m_parent;
-      else node = node->m_children.at(node->findChild(row.substr(5)));
+      else node = node->findChild(row.substr(5));
     }
     else if (!row.find("dir")) 
     {
