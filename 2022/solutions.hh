@@ -18,5 +18,6 @@ std::pair<std::string, std::string> day4(std::ifstream file);
 std::pair<std::string, std::string> day5(std::ifstream file);
 std::pair<std::string, std::string> day6(std::ifstream file);
 std::pair<std::string, std::string> day7(std::ifstream file);
+std::pair<std::string, std::string> day8(std::ifstream file);
 
 #endif
