@@ -2,21 +2,9 @@
 
 std::pair<std::string, std::string> day1()
 {
-  std::ifstream file("inputs/input1.txt");
-  std::string row;
-  int max = 0;
-  int sum = 0;
-  while (getline(file, row))
-  {
-    if (row.size() > 0)
-    {
-      sum += std::stoi(row);
-    }
-    else
-    {
-      if (sum > max) max = sum;
-      sum = 0;
-    }
-  }
-  return {std::to_string(max), "0"};
+  std::ifstream f("inputs/input1.txt");
+  std::string r;
+  int m=0;
+  for(int s=0;getline(f,r);m=s>m?s:m) s=r.size()>0?s+std::stoi(r):0;
+  return {std::to_string(m), "0"};
 }
