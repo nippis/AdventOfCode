@@ -91,17 +91,15 @@ std::pair<std::string, std::string> day9(std::ifstream file)
 {
   std::string row;
   std::unordered_set<vec2, Hash> history;
-  knot* rope = new knot(2);
+  knot* rope = new knot(10);
   std::unordered_set<vec2, Hash> history2;
-  knot* rope2 = new knot(10);
   while (getline(file, row))
   {
     for (int i = 0; i < std::stoi(row.substr(2)); ++i)
     {    
       rope->move(row.at(0));
-      history.insert(rope->get_tail()->m_loc);
-      rope2->move(row.at(0));
-      history2.insert(rope2->get_tail()->m_loc);
+      history2.insert(rope->get_tail()->m_loc);
+      history.insert(rope->m_prev->m_loc);
     }
   }
   // delete rope / commented because this is somehow broken;
