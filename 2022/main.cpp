@@ -25,7 +25,7 @@ int main(int argc, char** argv)
 {
    std::vector<std::pair<std::string, std::string>(*)()> dayFunctions =
     {
-      [](){return day1();},
+      [](){return day1(std::ifstream("inputs/input1.txt"));},
       [](){return day2(std::ifstream("inputs/input2.txt"));},
       [](){return day3(std::ifstream("inputs/input3.txt"));},
       [](){return day4(std::ifstream("inputs/input4.txt"));},
@@ -33,6 +33,7 @@ int main(int argc, char** argv)
       [](){return day6(std::ifstream("inputs/input6.txt"));},
       [](){return day7(std::ifstream("inputs/input7.txt"));},
       [](){return day8(std::ifstream("inputs/input8.txt"));},
+      [](){return day9(std::ifstream("inputs/input9.txt"));},
     };
 
   std::cout << "| Day    Part 1          Part 2         Time    Avg 10000 |" << std::endl;
