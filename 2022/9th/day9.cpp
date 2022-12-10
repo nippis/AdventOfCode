@@ -90,9 +90,8 @@ struct knot
 std::pair<std::string, std::string> day9(std::ifstream file)
 {
   std::string row;
-  std::unordered_set<vec2, Hash> history;
-  knot* rope = new knot(10);
-  std::unordered_set<vec2, Hash> history2;
+  std::unordered_set<vec2, Hash> history, history2;
+  knot* rope = new knot(100);
   while (getline(file, row))
   {
     for (int i = 0; i < std::stoi(row.substr(2)); ++i)
