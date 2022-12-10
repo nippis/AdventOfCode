@@ -1,39 +1,16 @@
 #include "../solutions.hh"
 
-struct cpu
+static int x=1, i=0, sum=0;
+int print()
 {
-  int x = 1;
-  int i = 0;
-  int strength_sum = 0;
-  void sum_signal_strength() {strength_sum += i*x;}
-  void print_char()
-  {
-    if (x-1==i%40 || x==i%40 || x+1 == i%40) std::cout << "# ";
-    else std::cout <<"  ";
-    if (++i%40 == 0) std::cout << std::endl;
-  }
-  void noop()
-  {
-    print_char();
-  }
-  void addx(int add)
-  {
-    for (int j : {0, 1})
-    {
-      print_char();
-    }
-    x += add;
-  }
-};
+  sum += (!((i+1)%20)&&(i+1)%40)*(i+1)*x; // Part 1
+  std::cout<<(char)(i%40>=x-1&&i%40<=x+1?35:32)<<(char)(++i%40==0?10:0); // Part2
+  return 1;
+}
 
 std::pair<std::string, std::string> day10(std::ifstream file)
 {
-  std::string row;
-  cpu c;
-  while (getline(file, row))
-  {
-    if (row.substr(0, 4) == "noop") c.noop();
-    else if (row.substr(0, 4) == "addx") c.addx(std::stoi(row.substr(5)));
-  }
-  return {std::to_string(c.strength_sum), "0"};
+  for (std::string row; getline(file, row) && print(); x+=row.size()>4?std::stoi(row.substr(5)):0)
+    if (row.substr(0, 4) == "addx") print();
+  return {std::to_string(sum), "0"};
 }
