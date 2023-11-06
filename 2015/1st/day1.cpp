@@ -3,7 +3,7 @@
 std::pair<std::string, std::string> day1::solve(std::ifstream f)
 {
   char a;
-  int firstBasement;
+  int firstBasement = 0;
   int floor = 0;
   int i = 0;
   while (f.get(a) && ++i)
