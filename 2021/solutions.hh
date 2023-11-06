@@ -12,7 +12,7 @@
 
 std::string whitespace(int length);
 
-std::pair<std::string, std::string> day1(std::ifstream f);
+std::pair<std::string, std::string> day1(std::ifstream file);
 std::pair<std::string, std::string> day2(std::ifstream file);
 std::pair<std::string, std::string> day3(std::ifstream file);
 std::pair<std::string, std::string> day4(std::ifstream file);
@@ -22,8 +22,5 @@ std::pair<std::string, std::string> day7(std::ifstream file);
 std::pair<std::string, std::string> day8(std::ifstream file);
 std::pair<std::string, std::string> day9(std::ifstream file);
 std::pair<std::string, std::string> day10(std::ifstream file);
-std::pair<std::string, std::string> day11(std::ifstream file);
-std::pair<std::string, std::string> day12(std::ifstream file);
-std::pair<std::string, std::string> day13(std::ifstream file);
 
 #endif

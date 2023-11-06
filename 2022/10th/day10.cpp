@@ -4,7 +4,7 @@ static int x=1, i=0, sum=0;
 int print()
 {
   sum += (!((i+1)%20)&&(i+1)%40)*(i+1)*x; // Part 1
-  std::cout<<(char)(i%40>=x-1&&i%40<=x+1?35:32)<<(char)(++i%40==0?10:0); // Part2
+  //std::cout<<(char)(i%40>=x-1&&i%40<=x+1?35:32)<<(char)(++i%40==0?10:0); // Part2
   return 1;
 }
 
