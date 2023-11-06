@@ -42,13 +42,13 @@ int main(int argc, char** argv)
       [](){return day15::solve(std::ifstream("inputs/input15.txt"));},
       [](){return day16::solve(std::ifstream("inputs/input16.txt"));},
       [](){return day17::solve(std::ifstream("inputs/input17.txt"));},
-      [](){return day13::solve(std::ifstream("inputs/input18.txt"));},
-      [](){return day13::solve(std::ifstream("inputs/input19.txt"));},
-      [](){return day13::solve(std::ifstream("inputs/input20.txt"));},
-      [](){return day13::solve(std::ifstream("inputs/input21.txt"));},
-      [](){return day13::solve(std::ifstream("inputs/input22.txt"));},
-      [](){return day13::solve(std::ifstream("inputs/input23.txt"));},
-      [](){return day13::solve(std::ifstream("inputs/input24.txt"));},
+      [](){return day18::solve(std::ifstream("inputs/input18.txt"));},
+      [](){return day19::solve(std::ifstream("inputs/input19.txt"));},
+      [](){return day20::solve(std::ifstream("inputs/input20.txt"));},
+      [](){return day21::solve(std::ifstream("inputs/input21.txt"));},
+      [](){return day22::solve(std::ifstream("inputs/input22.txt"));},
+      [](){return day23::solve(std::ifstream("inputs/input23.txt"));},
+      [](){return day24::solve(std::ifstream("inputs/input24.txt"));},
     };
 
   std::cout << "| Day    Part 1          Part 2         Time     Avg 10000 |" << std::endl;
