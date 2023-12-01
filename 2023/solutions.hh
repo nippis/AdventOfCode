@@ -9,6 +9,7 @@
 #include <fstream>
 #include <iostream>
 #include <algorithm>
+#include <string>
 
 std::string whitespace(int length);
 
