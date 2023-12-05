@@ -40,7 +40,7 @@ std::pair<std::string, std::string> day1::solve(std::ifstream f)
         int a = ac-48;
         int b = bc-48;
 
-        int ab = a;
+        /*int ab = a;
         int bb = b;
         int bbi = 0, abi = row.size();
         for (int j = 0; j<numbers.size(); ++j)
@@ -58,12 +58,12 @@ std::pair<std::string, std::string> day1::solve(std::ifstream f)
               bb = j+1;
               bbi = posb;
             }
-        }
+        }*/
         std::string sumstr = std::to_string(a)+std::to_string(b);
-        std::string sumstrb = std::to_string(ab)+std::to_string(bb);
+        //std::string sumstrb = std::to_string(ab)+std::to_string(bb);
         sum += stoi(sumstr);
-        sumb += stoi(sumstrb);
+        //sumb += stoi(sumstrb);
     }
 
-    return {std::to_string(sum), std::to_string(sumb)};
+    return {std::to_string(sum), ""};//std::to_string(sumb)};
 }

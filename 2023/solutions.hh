@@ -10,6 +10,10 @@
 #include <iostream>
 #include <algorithm>
 #include <string>
+#include <cmath>
+#include <list>
+#include <sstream>
+#include <set>
 
 std::string whitespace(int length);
 
