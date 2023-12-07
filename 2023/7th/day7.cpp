@@ -76,15 +76,25 @@ HandType Hand::find_type()
   {
     int count = std::count(m_hand.begin(), m_hand.end(), x);
     if (count == 5) return HandType::five;
-    else if (count == 4) return HandType::four;
+    else if (count == 4) 
+    {
+      if (std::count(m_hand.begin(), m_hand.end(), 1) == 1)
+        return HandType::five;
+      else
+        return HandType::four;
+    }
     else if (count == 3)
     {
       for (int y = 2; y < 15; y++)
       {
         int count2 = std::count(m_hand.begin(), m_hand.end(), y);
-        if (count2 == 2) return HandType::full_house;
+        if (count2 == 2) 
+          return HandType::full_house;
       }
-      return HandType::three;
+      if ((std::count(m_hand.begin(), m_hand.end(), 1) == 1))
+        return HandType::full_house;
+      else
+        return HandType::three;
     }
     else if (count == 2)
     {
@@ -92,7 +102,13 @@ HandType Hand::find_type()
       {
         if (y == x) continue;
         int count2 = std::count(m_hand.begin(), m_hand.end(), y);
-        if (count2 == 2) return HandType::two_pairs;
+        if (count2 == 2)
+        {
+          if (std::count(m_hand.begin(), m_hand.end(), 1) == 1)
+            return HandType::full_house;
+          else
+            return HandType::two_pairs;
+        }
         else if (count2 == 3) return HandType::full_house;
       }
       return HandType::pair;
