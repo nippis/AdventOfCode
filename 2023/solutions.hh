@@ -14,6 +14,7 @@
 #include <list>
 #include <sstream>
 #include <set>
+#include <unordered_map>
 
 std::string whitespace(int length);
 

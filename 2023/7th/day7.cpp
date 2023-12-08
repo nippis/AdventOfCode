@@ -154,9 +154,6 @@ std::pair<std::string, std::string> day7::solve(std::ifstream f)
   for (auto hand : hands)
   {
     sum += hand.get_bet()*i;
-    std::cout << "Rank: " << i << " Bet: " << hand.get_bet() << " Hand: ";
-    for (int card : hand.get_hand()) std::cout << card << " ";
-    std::cout << std::endl;
     i++;
   }
   return {std::to_string(sum),""};
