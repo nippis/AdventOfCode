@@ -18,6 +18,8 @@ long long get_next_number(std::stringstream &input_stream)
 
 std::pair<std::string, std::string> day5::solve(std::ifstream f)
 {
+
+  return {"",""};
   std::string line;
   std::vector<long long> ids;
 
