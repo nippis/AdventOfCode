@@ -90,13 +90,9 @@ std::pair<std::string, std::string> day10::solve(std::ifstream f)
   Pipe* prev = nullptr;
   do
   {
-    std::cout << "From: " << pipe->x << ", " << pipe->y << 
-    "  Links: " << pipe->a->x << ", " << pipe->a->y << "  " << pipe->b->x << ", " << pipe->b->y << std::endl;
     Pipe* prevtemp = pipe;
     pipe = (pipe->a != prev) ? pipe->a : pipe->b;
-    std::cout << "To:   " << pipe->x << ", " << pipe->y << std::endl;
     prev = prevtemp;
-    std::cout << "Prev: " << prev->x << ", " << prev->y << std::endl;
     steps++;
   }
   while (pipe != start);
