@@ -47,7 +47,7 @@ day10.o: 10th/day10.cpp solutions.hh
 	g++ -c -O2 10th/day10.cpp
 
 day11.o: 11th/day11.cpp solutions.hh
-	g++ -c -O2 11h/day11.cpp
+	g++ -c -O2 11th/day11.cpp
 
 day12.o: 12th/day12.cpp solutions.hh
 	g++ -c -O2 12th/day12.cpp
