@@ -72,7 +72,7 @@ std::pair<std::string, std::string> day8::solve(std::ifstream f)
     steps++;
   }
 
-  return {std::to_string(steps), ""};
+   return {std::to_string(steps), ""};
 
   // Part B
   for (auto& [key, value] : nodes)
@@ -93,24 +93,30 @@ std::pair<std::string, std::string> day8::solve(std::ifstream f)
   }
   std::cout << std::endl;
 
-  long long stepsb = 5952400801;
-  //i = 0;
-  while (false)//!std::all_of(curr_nodes.begin(), curr_nodes.end(), 
-    //[](int x) {return int_to_node(x).at(2) == 'Z';}))
-    //[](Node* x) {return ((x->code)&127) == 'Z';}))
+  long long stepsb = 0;
+  i = 0;
+  std::vector<bool> instr;
+  for (auto a : instructions) 
+  {
+    if (a == 'L') instr.push_back(true);
+    else if (a == 'R') instr.push_back(false);
+  }
+
+  while (!std::all_of(curr_nodes.begin(), curr_nodes.end(), 
+    [](Node* x) {return ((x->code)&127) == 'Z';}))
   {
     if (i == instructions.size()) i = 0;
     for (Node* node : curr_nodes)
     {
-      if (instructions.at(i) == 'L') node = node->left;
-      else if (instructions.at(i) == 'R') node = node->right;
+      if (instr[i]) node = node->left;
+      else node = node->right;
     }
     i++;
     stepsb++;
     if (stepsb % 1000000000 == 0) std::cout << stepsb << std::endl;
   }
 
-  std::vector<long long> s_to_f;
+  /*std::vector<long long> s_to_f;
   std::vector<long long> cycles;
   for (Node* node : curr_nodes)
   {
@@ -150,7 +156,7 @@ std::pair<std::string, std::string> day8::solve(std::ifstream f)
     {
       stepsb++;
       if (stepsb % 1000000000 == 0) std::cout << stepsb << std::endl;
-    }
+    }*/
 
 
   return {std::to_string(steps), std::to_string(stepsb)};

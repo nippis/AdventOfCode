@@ -10,11 +10,14 @@ solutions = 11th/day11.cpp 12th/day12.cpp 13th/day13.cpp  14th/day14.cpp 15th/da
 
 all: main
 
-main: main.o solutions day1 day2 day3 day4 day5 day6 day7 day8 day9 day10
-	g++ -o $(output) -O2 *.o
+main: main.o day9 utility solutions.hh
+	g++ -o $(output) -Ofast *.o
 
 main.o: main.cpp
 	g++ -c main.cpp
+
+utility: utility.cpp
+	g++ -c -O2 utility.cpp 
 
 solutions: $(solutions) utility.cpp solutions.hh
 	g++ -c -O2 utility.cpp $(solutions)
@@ -47,4 +50,4 @@ day9: 9th/day9.cpp solutions.hh
 	g++ -c -O2 9th/day9.cpp
 
 day10: 10th/day10.cpp solutions.hh
-	g++ -c -O2 10th/day10.cpp
+	g++ -c -Ofast 10th/day10.cpp
