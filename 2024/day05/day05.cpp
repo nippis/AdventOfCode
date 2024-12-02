@@ -1,6 +1,6 @@
 #include "../solutions.hh"
 
-std::pair<std::string, std::string> day5::solve(std::ifstream f)
+std::pair<std::string, std::string> day05::solve(std::ifstream f)
 {
   return {"",""};
 }

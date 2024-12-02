@@ -14,7 +14,7 @@ bool reportIsSafe(int type, std::list<int>::iterator it, std::list<int>& numbers
   return false;
 }
 
-std::pair<std::string, std::string> day2::solve(std::ifstream f)
+std::pair<std::string, std::string> day02::solve(std::ifstream f)
 {
   std::string row = "";
   int safeReports = 0;

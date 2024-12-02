@@ -14,18 +14,19 @@
 #include <sstream>
 #include <list>
 #include <iterator>
+#include <format>
 
 std::string whitespace(int length);
 
-namespace day1  {std::pair<std::string, std::string> solve(std::ifstream file);}
-namespace day2  {std::pair<std::string, std::string> solve(std::ifstream file);}
-namespace day3  {std::pair<std::string, std::string> solve(std::ifstream file);}
-namespace day4  {std::pair<std::string, std::string> solve(std::ifstream file);}
-namespace day5  {std::pair<std::string, std::string> solve(std::ifstream file);}
-namespace day6  {std::pair<std::string, std::string> solve(std::ifstream file);}
-namespace day7  {std::pair<std::string, std::string> solve(std::ifstream file);}
-namespace day8  {std::pair<std::string, std::string> solve(std::ifstream file);}
-namespace day9  {std::pair<std::string, std::string> solve(std::ifstream file);}
+namespace day01 {std::pair<std::string, std::string> solve(std::ifstream file);}
+namespace day02 {std::pair<std::string, std::string> solve(std::ifstream file);}
+namespace day03 {std::pair<std::string, std::string> solve(std::ifstream file);}
+namespace day04 {std::pair<std::string, std::string> solve(std::ifstream file);}
+namespace day05 {std::pair<std::string, std::string> solve(std::ifstream file);}
+namespace day06 {std::pair<std::string, std::string> solve(std::ifstream file);}
+namespace day07 {std::pair<std::string, std::string> solve(std::ifstream file);}
+namespace day08 {std::pair<std::string, std::string> solve(std::ifstream file);}
+namespace day09 {std::pair<std::string, std::string> solve(std::ifstream file);}
 namespace day10 {std::pair<std::string, std::string> solve(std::ifstream file);}
 namespace day11 {std::pair<std::string, std::string> solve(std::ifstream file);}
 namespace day12 {std::pair<std::string, std::string> solve(std::ifstream file);}

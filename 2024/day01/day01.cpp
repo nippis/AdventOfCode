@@ -1,6 +1,6 @@
 #include "../solutions.hh"
 
-std::pair<std::string, std::string> day1::solve(std::ifstream f)
+std::pair<std::string, std::string> day01::solve(std::ifstream f)
 {
   std::string row = "";
   std::vector<int> idlist1;

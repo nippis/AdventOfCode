@@ -23,33 +23,33 @@ void printRow(int i, std::pair<std::string, std::string>& values, int dur, int d
 
 int main(int argc, char** argv)
 {
-   std::vector<std::pair<std::string, std::string>(*)()> dayFunctions =
+   std::vector<std::pair<std::string, std::string>(*)(std::ifstream)> dayFunctions =
     {
-      [](){return day1 ::solve(std::ifstream("inputs/input1.txt"));},
-      [](){return day2 ::solve(std::ifstream("inputs/input2.txt"));},
-      [](){return day3 ::solve(std::ifstream("inputs/input3.txt"));},
-      [](){return day4 ::solve(std::ifstream("inputs/input4.txt"));},
-      [](){return day5 ::solve(std::ifstream("inputs/input5.txt"));},
-      [](){return day6 ::solve(std::ifstream("inputs/input6.txt"));},
-      [](){return day7 ::solve(std::ifstream("inputs/input7.txt"));},
-      [](){return day8 ::solve(std::ifstream("inputs/input8.txt"));},
-      [](){return day9 ::solve(std::ifstream("inputs/input9.txt"));},
-      [](){return day10::solve(std::ifstream("inputs/input10.txt"));},
-      [](){return day11::solve(std::ifstream("inputs/input11.txt"));},
-      [](){return day12::solve(std::ifstream("inputs/input12.txt"));},
-      [](){return day13::solve(std::ifstream("inputs/input13.txt"));},
-      [](){return day14::solve(std::ifstream("inputs/input14.txt"));},
-      [](){return day15::solve(std::ifstream("inputs/input15.txt"));},
-      [](){return day16::solve(std::ifstream("inputs/input16.txt"));},
-      [](){return day17::solve(std::ifstream("inputs/input17.txt"));},
-      [](){return day18::solve(std::ifstream("inputs/input18.txt"));},
-      [](){return day19::solve(std::ifstream("inputs/input19.txt"));},
-      [](){return day20::solve(std::ifstream("inputs/input20.txt"));},
-      [](){return day21::solve(std::ifstream("inputs/input21.txt"));},
-      [](){return day22::solve(std::ifstream("inputs/input22.txt"));},
-      [](){return day23::solve(std::ifstream("inputs/input23.txt"));},
-      [](){return day24::solve(std::ifstream("inputs/input24.txt"));},
-      [](){return day25::solve(std::ifstream("inputs/input25.txt"));},
+      day01::solve,
+      day02::solve,
+      day03::solve,
+      day04::solve,
+      day05::solve,
+      day06::solve,
+      day07::solve,
+      day08::solve,
+      day09::solve,
+      day10::solve,
+      day11::solve,
+      day12::solve,
+      day13::solve,
+      day14::solve,
+      day15::solve,
+      day16::solve,
+      day17::solve,
+      day18::solve,
+      day19::solve,
+      day20::solve,
+      day21::solve,
+      day22::solve,
+      day23::solve,
+      day24::solve,
+      day25::solve,
     };
 
   std::cout << "| Day    Part 1          Part 2         Time     Avg 10000 |" << std::endl;
@@ -58,11 +58,12 @@ int main(int argc, char** argv)
   for (auto func : dayFunctions)
   {
     auto start = std::chrono::high_resolution_clock::now();
-    auto values = func();
+    std::string inputFile = std::format("inputs/input{}.txt", i);
+    auto values = func(std::ifstream(inputFile));
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
     start = std::chrono::high_resolution_clock::now();
-    if (argc > 1) for (int i = 0; i<10000; i++) func();
+    if (argc > 1) for (int i = 0; i<10000; i++) func(std::ifstream(inputFile));
     stop = std::chrono::high_resolution_clock::now();
     auto duration2 = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
     printRow(i, values, duration.count(), duration2.count());
