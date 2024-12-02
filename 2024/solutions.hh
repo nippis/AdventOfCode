@@ -14,7 +14,6 @@
 #include <sstream>
 #include <list>
 #include <iterator>
-#include <format>
 
 std::string whitespace(int length);
 

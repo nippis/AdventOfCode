@@ -1,5 +1,6 @@
 #include <chrono>
 #include "solutions.hh"
+#include <format>
 
 void printRow(int i, std::pair<std::string, std::string>& values, int dur, int dur2)
 {
