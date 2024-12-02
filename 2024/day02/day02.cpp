@@ -1,23 +1,16 @@
 #include "../solutions.hh"
 
-enum ReportType
-{
-  none,
-  asc,
-  desc
-};
-
-bool reportIsSafe(ReportType type, int prev, std::list<int>::iterator it, std::list<int>::iterator end)
+bool reportIsSafe(int type, std::list<int>::iterator it, std::list<int>& numbers)
 {
   std::string inputNumber;
-  if (it == end)
+  if (it == numbers.end())
     return true;
-  if (prev < 0)
-    return reportIsSafe(type, *it, std::next(it), end);
-  if ((type == none || type == asc) && *it > prev && *it-prev <= 3)
-    return reportIsSafe(asc, *it, std::next(it), end);
-  if ((type == none || type == desc) && prev > *it && prev-*it <= 3)
-    return reportIsSafe(desc, *it, std::next(it), end);
+  if (it == numbers.begin())
+    return reportIsSafe(0, std::next(it), numbers);
+  if ((type >= 0) && *it > *std::prev(it) && *it-*std::prev(it) <= 3)
+    return reportIsSafe(1, std::next(it), numbers);
+  if ((type <= 0) && *std::prev(it) > *it && *std::prev(it)-*it <= 3)
+    return reportIsSafe(-1, std::next(it), numbers);
   return false;
 }
 
@@ -35,14 +28,14 @@ std::pair<std::string, std::string> day2::solve(std::ifstream f)
       numbers.push_back(stoi(number));
     
     // Part One
-    safeReports += reportIsSafe(none, -1, numbers.begin(), numbers.end());
+    safeReports += reportIsSafe(0, numbers.begin(), numbers);
 
     // Part Two
     for (int i = 0; i < numbers.size(); ++i)
     {
       std::list<int> numbers2(numbers);
       numbers2.erase(std::next(numbers2.begin(),i));
-      if (reportIsSafe(none, -1, numbers2.begin(), numbers2.end()))
+      if (reportIsSafe(0, numbers2.begin(), numbers2))
       {
         ++safeReports2;
         break;
