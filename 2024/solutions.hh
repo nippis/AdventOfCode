@@ -38,4 +38,5 @@ namespace day21 {std::pair<std::string, std::string> solve(std::ifstream file);}
 namespace day22 {std::pair<std::string, std::string> solve(std::ifstream file);}
 namespace day23 {std::pair<std::string, std::string> solve(std::ifstream file);}
 namespace day24 {std::pair<std::string, std::string> solve(std::ifstream file);}
+namespace day25 {std::pair<std::string, std::string> solve(std::ifstream file);}
 #endif
