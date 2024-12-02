@@ -11,6 +11,9 @@
 #include <algorithm>
 #include <string>
 #include <set>
+#include <sstream>
+#include <list>
+#include <iterator>
 
 std::string whitespace(int length);
 
