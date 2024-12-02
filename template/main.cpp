@@ -49,6 +49,7 @@ int main(int argc, char** argv)
       [](){return day22::solve(std::ifstream("inputs/input22.txt"));},
       [](){return day23::solve(std::ifstream("inputs/input23.txt"));},
       [](){return day24::solve(std::ifstream("inputs/input24.txt"));},
+      [](){return day25::solve(std::ifstream("inputs/input25.txt"));},
     };
 
   std::cout << "| Day    Part 1          Part 2         Time     Avg 10000 |" << std::endl;
