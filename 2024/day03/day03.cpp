@@ -1,5 +1,7 @@
 #include "../solutions.hh"
 
+constexpr int MAX_TOKEN_LENGTH = 3;
+
 enum tokenType
 {
   t_none,
@@ -27,7 +29,7 @@ bool isDigit(char a)
   return a >= '0' && a <= '9';
 }
 
-tokenPair findNextToken(std::string input)
+tokenPair findNextToken(const std::string& input)
 {
   for (auto keyword : KEYWORDS)
   {
@@ -40,7 +42,7 @@ tokenPair findNextToken(std::string input)
   if (isDigit(input.front()))
   { 
     std::string number;
-    for (int i = 0; isDigit(input.at(i)); i++)
+    for (int i = 0; i < input.size() && isDigit(input.at(i)); i++)
       number.push_back(input.at(i));
     return std::make_pair(t_integer, number);
   }
@@ -57,11 +59,11 @@ tokenPair findNextToken(std::string input)
   return std::make_pair(t_none, " ");
 }
 
-void getTokens(tokenList& tokens, std::string input)
+void getTokens(tokenList& tokens, const std::string& input)
 {
   for (int i = 0; i < input.size();)
   {
-    tokenPair nextToken = findNextToken(input.substr(i));
+    tokenPair nextToken = findNextToken(input.substr(i, MAX_TOKEN_LENGTH));
     tokens.push_back(nextToken);
     i += nextToken.second.size();
   }
