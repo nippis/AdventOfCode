@@ -2,14 +2,8 @@
 
 struct point
 {
-  int x;
-  int y;
-
-  void operator+=(const point& rhs)
-  {
-    x = x + rhs.x;
-    y = y + rhs.y;
-  }
+  int x, y;
+  void operator+=(const point& r) {x=x+r.x; y=y+r.y;}
 };
 
 constexpr std::string word = "XMAS";
