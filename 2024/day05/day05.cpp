@@ -6,7 +6,6 @@ std::pair<std::string, std::string> day05::solve(std::ifstream f)
 {
   std::vector<rulePair> rules;
   std::vector<std::vector<int>> updates;
-
   std::string row;
   while (getline(f, row))
   {
@@ -21,32 +20,19 @@ std::pair<std::string, std::string> day05::solve(std::ifstream f)
       updates.back().push_back(std::stoi(row.substr(i, 2)));
   }
 
-  int sum = 0;
-  int sum2 = 0;
+  int sum1 = 0, sum2 = 0;
   for (auto update : updates)
   {
-    if (std::all_of(rules.begin(), rules.end(),
-      [=](auto r)
-      {
-        return
-          std::find(update.begin(), update.end(), r.first) != update.end() &&
-          std::find(update.begin(), update.end(), r.second) != update.end() &&
-          std::find(std::find(update.begin(), update.end(), r.first), update.end(), r.second) != update.end();
-      }
-    ))
-      sum += update.at(update.size()/2);
-    else
+    auto cmp = [=](int a, int b) 
     {
-      std::sort(update.begin(), update.end(), 
-        [=](int a, int b)
-        {
-          for (auto rule : rules)
-            if (rule.first == a && rule.second == b || rule.first == b && rule.second == a)
-              return rule.first == a;
-          return false;
-        });
-      sum2 += update.at(update.size()/2);
-    }
+      for (auto r : rules) if (r.first == a && r.second == b || r.first == b && r.second == a) 
+        return r.first == a;
+      return false;
+    };
+    if (std::is_sorted(update.begin(), update.end(), cmp) && (sum1 += update.at(update.size()/2)))
+      continue;
+    std::sort(update.begin(), update.end(), cmp);
+    sum2 += update.at(update.size()/2);
   }
-  return {std::to_string(sum), std::to_string(sum2)};
+  return {std::to_string(sum1), std::to_string(sum2)};
 }
