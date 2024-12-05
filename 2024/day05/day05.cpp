@@ -1,8 +1,10 @@
 #include "../solutions.hh"
 
+using rulePair = std::pair<int, int>;
+
 std::pair<std::string, std::string> day05::solve(std::ifstream f)
 {
-  std::vector<std::pair<int, int>> rules;
+  std::vector<rulePair> rules;
   std::vector<std::vector<int>> updates;
 
   std::string row;
@@ -23,7 +25,7 @@ std::pair<std::string, std::string> day05::solve(std::ifstream f)
   int sum2 = 0;
   for (auto update : updates)
   {
-    std::vector<std::pair<int, int>> applicableRules;
+    std::vector<rulePair> applicableRules;
     for (auto rule : rules)
     {
       if (std::find(update.begin(), update.end(), rule.first) == update.end() ||
@@ -33,33 +35,23 @@ std::pair<std::string, std::string> day05::solve(std::ifstream f)
     }
     bool correct = true;
     for (auto rule : applicableRules)
-    {
       if (std::find(std::find(update.begin(), update.end(), rule.first), update.end(), rule.second) == update.end())
       {
         correct = false;
         break;
       }
-    }
     if (correct)
-    {
       sum += update.at(update.size()/2);
-    }
     else
     {
-      bool todo = true;
-      while (todo)
-      {
-        todo = false;
-        for (auto rule : applicableRules)
+      std::sort(update.begin(), update.end(), 
+        [=](int a, int b)
         {
-          if (std::find(std::find(update.begin(), update.end(), rule.first), update.end(), rule.second) == update.end())
-          {
-            todo = true;
-            update.insert(std::find(update.begin(), update.end(), rule.second), rule.first);
-            update.erase(std::find(std::find(update.begin(), update.end(), rule.second), update.end(), rule.first));
-          }
-        }
-      }
+          for (auto rule : applicableRules)
+            if (rule.first == a && rule.second == b || rule.first == b && rule.second == a)
+              return rule.first == a;
+          return false;
+        });
       sum2 += update.at(update.size()/2);
     }
   }
