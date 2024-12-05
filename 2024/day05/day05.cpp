@@ -1,20 +1,25 @@
 #include "../solutions.hh"
 
-std::pair<std::string, std::string> day05::solve(std::ifstream f)
+using namespace std;
+pair<string, string> day05::solve(ifstream f)
 {
-  std::vector<std::pair<int, int>> rules;
-  std::string row;
-  while (getline(f, row) && !row.empty())
-    rules.push_back({std::stoi(row.substr(0, 2)), std::stoi(row.substr(3, 2))});
-  int sum1 = 0, sum2 = 0;
-  while (getline(f, row))
+  vector<pair<int, int>> rs;
+  string l;
+  while (getline(f, l) && !l.empty())
+    rs.push_back({stoi(l.substr(0, 2)), stoi(l.substr(3, 2))});
+  int s1 = 0, s2 = 0;
+  while (getline(f, l))
   {
-    std::string update;
-    for (int i = 0; i < row.size(); i += 3) update.push_back(std::stoi(row.substr(i, 2)));
-    auto cmp = [=](int a, int b) {return std::any_of(rules.begin(), rules.end(), [=](auto r) {return r.first == a && r.second == b;});};
-    if (std::is_sorted(update.begin(), update.end(), cmp) && (sum1 += update.at(update.size()/2))) continue;
-    std::sort(update.begin(), update.end(), cmp);
-    sum2 += update.at(update.size()/2);
+    string u;
+    for (int i = 0; i < l.size(); i += 3) u.push_back(stoi(l.substr(i, 2)));
+    auto c = [=](int a, int b)
+    {
+      return any_of(rs.begin(), rs.end(), 
+      [=](auto r) {return r.first == a && r.second == b;});
+    };
+    if (is_sorted(u.begin(), u.end(), c) && (s1 += u.at(u.size()/2))) continue;
+    sort(u.begin(), u.end(), c);
+    s2 += u.at(u.size()/2);
   }
-  return {std::to_string(sum1), std::to_string(sum2)};
+  return {to_string(s1), to_string(s2)};
 }
