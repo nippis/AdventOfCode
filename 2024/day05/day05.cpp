@@ -1,18 +1,12 @@
 #include "../solutions.hh"
 
-using rulePair = std::pair<int, int>;
-
 std::pair<std::string, std::string> day05::solve(std::ifstream f)
 {
-  std::vector<rulePair> rules;
+  std::vector<std::pair<int, int>> rules;
   std::vector<std::vector<int>> updates;
   std::string row;
-  while (getline(f, row))
-  {
-    if (row.empty())
-      break;
+  while (getline(f, row) && !row.empty())
     rules.push_back(std::make_pair(std::stoi(row.substr(0, 2)), std::stoi(row.substr(3, 2))));
-  }
   while (getline(f, row))
   {
     updates.push_back({});
