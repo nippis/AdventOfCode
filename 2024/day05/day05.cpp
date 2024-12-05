@@ -8,19 +8,7 @@ std::pair<std::string, std::string> day05::solve(std::ifstream f)
   {
     if (row.empty())
       break;
-    std::string page1;
-    std::string page2;
-    std::string* page = &page1;
-    for (char a : row)
-    {
-      if (a == '|')
-      {
-        page = &page2;
-        continue;
-      }
-      page->push_back(a);
-    }
-    rules.push_back(std::make_pair(std::stoi(page1), std::stoi(page2)));
+    rules.push_back(std::make_pair(std::stoi(row.substr(0, 2)), std::stoi(row.substr(3, 2))));
   }
 
   std::vector<std::vector<int>> updates;
