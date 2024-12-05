@@ -25,29 +25,22 @@ std::pair<std::string, std::string> day05::solve(std::ifstream f)
   int sum2 = 0;
   for (auto update : updates)
   {
-    std::vector<rulePair> applicableRules;
-    for (auto rule : rules)
-    {
-      if (std::find(update.begin(), update.end(), rule.first) == update.end() ||
-          std::find(update.begin(), update.end(), rule.second) == update.end() )
-        continue;
-      applicableRules.push_back(rule);
-    }
-    bool correct = true;
-    for (auto rule : applicableRules)
-      if (std::find(std::find(update.begin(), update.end(), rule.first), update.end(), rule.second) == update.end())
+    if (std::all_of(rules.begin(), rules.end(),
+      [=](auto r)
       {
-        correct = false;
-        break;
+        return
+          std::find(update.begin(), update.end(), r.first) != update.end() &&
+          std::find(update.begin(), update.end(), r.second) != update.end() &&
+          std::find(std::find(update.begin(), update.end(), r.first), update.end(), r.second) != update.end();
       }
-    if (correct)
+    ))
       sum += update.at(update.size()/2);
     else
     {
       std::sort(update.begin(), update.end(), 
         [=](int a, int b)
         {
-          for (auto rule : applicableRules)
+          for (auto rule : rules)
             if (rule.first == a && rule.second == b || rule.first == b && rule.second == a)
               return rule.first == a;
           return false;
