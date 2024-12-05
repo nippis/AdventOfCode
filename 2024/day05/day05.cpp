@@ -2,32 +2,21 @@
 
 std::pair<std::string, std::string> day05::solve(std::ifstream f)
 {
-  std::string row;
   std::vector<std::pair<int, int>> rules;
+  std::vector<std::vector<int>> updates;
+
+  std::string row;
   while (getline(f, row))
   {
     if (row.empty())
       break;
     rules.push_back(std::make_pair(std::stoi(row.substr(0, 2)), std::stoi(row.substr(3, 2))));
   }
-
-  std::vector<std::vector<int>> updates;
   while (getline(f, row))
   {
-    std::vector<int> pages;
-    std::string page;
-    for (char a : row)
-    {
-      if (a == ',')
-      {
-        pages.push_back(std::stoi(page));
-        page.clear();
-        continue;
-      }
-      page.push_back(a);
-    }
-    pages.push_back(std::stoi(page));
-    updates.push_back(pages);
+    updates.push_back({});
+    for (int i = 0; i < row.size(); i += 3)
+      updates.back().push_back(std::stoi(row.substr(i, 2)));
   }
 
   int sum = 0;
