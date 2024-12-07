@@ -8,9 +8,9 @@ void printRow(int i, std::pair<std::string, std::string>& values, int dur, int d
   std::string b = values.second;
   std::string d = std::to_string(i);
   std::cout << "|" 
-  << whitespace(5-d.size()) << d 
-  << whitespace(15-a.size()) << a 
-  << whitespace(15-b.size()) << b 
+  << whitespace(3-d.size()) << d 
+  << whitespace(20-a.size()) << a 
+  << whitespace(20-b.size()) << b 
   << whitespace(2);
   std::printf("%.3f", (double)dur/1000);
   std::cout << " ms" 
@@ -51,8 +51,8 @@ int main(int argc, char** argv)
       day25::solve,
     };
 
-  std::cout << "| Day    Part 1          Part 2         Time     Avg 1000  |" << std::endl;
-  std::cout << "|----------------------------------------------------------|" << std::endl;
+  std::cout << "| Day  Part 1               Part 2              Time     Avg 1000  |" << std::endl;
+  std::cout << "|------------------------------------------------------------------|" << std::endl;
   int i = 1;
   for (auto func : dayFunctions)
   {
