@@ -14,10 +14,13 @@ struct vec
 
 struct matrix
 {
+  matrix(){}
+  matrix(matrix& i) : map(i.getMap()){}
 
   void push_back(std::string s) {map.push_back(s);}
   char& at(vec l) {return map.at(l.x).at(l.y);}
-  int operator++() {return ++xCount;}
+  int addX() {return ++xCount;}
+  int addO() {return ++oCount;}
 
   auto size() const {return map.size();}
   auto row(std::string::size_type i) const {return map.at(i);}
@@ -25,6 +28,8 @@ struct matrix
   const char next(vec l, vec d) const {return map.at((l+d).x).at((l+d).y);}
   const char prev(vec l, vec d) const {return map.at((l-d).x).at((l-d).y);}
   int getXCount(){return xCount;}
+  int getOCount(){return oCount;}
+  std::vector<std::string> getMap(){return map;}
 
   bool out(vec l) const
   {
@@ -34,6 +39,7 @@ struct matrix
   private:
   std::vector<std::string> map;
   int xCount = 1;
+  int oCount = 0;
 };
 
 char dir(vec d)
@@ -49,14 +55,41 @@ char dir(vec d)
   return 'X';
 }
 
+bool findLoop(vec l, vec v, matrix* m)
+{
+  if (m->out(l))
+    return false;
+  if (m->at(l) == '#')
+  {
+    return findLoop(l-v, v.normal(), m);
+  }
+  if (m->at(l) == dir(v))
+    return true;
+  m->at(l) = dir(v);
+  return findLoop(l+v, v, m);
+}
+
 bool move(vec l, vec v, matrix& m)
 {
   if (m.out(l))
     return true;
   if (m.at(l) == '#')
+  {
     return move(l-v, v.normal(), m);
+  }
   if (m.at(l) == '.')
-    ++m;
+    m.addX();
+  if (m.at(l) == dir(v))
+    return false;
+  matrix* copy = new matrix(m);
+  if (!m.out(l+v))
+    copy->at(l+v) = '#';
+  //if (findLoop(l, v.normal(), copy))
+  {
+    //std::cout << "Travelled: " << m.getXCount() << " Found loop at: " << l.x << ", " << l.y << std::endl;
+    m.addO();
+  }
+  delete copy;
   m.at(l) = dir(v);
   return move(l+v, v, m);
 }
@@ -77,5 +110,5 @@ std::pair<std::string, std::string> day06::solve(std::ifstream f)
 
   move(loc, v, map);
   
-  return {std::to_string(map.getXCount()), ""};
+  return {std::to_string(map.getXCount()), std::to_string(map.getOCount())};
 }
