@@ -58,11 +58,7 @@ std::pair<std::string, std::string> day09::solve(std::ifstream f)
   for (int i = 0; i < disk.size(); ++i)
     sum += disk.at(i)*i;
 
-  int id = 10000;
-  for (int j = disk.size()-1; j >= 0; --j)
-  {
-    
-  }
+
   
   return {std::to_string(sum),""};
 }
