@@ -18,6 +18,7 @@ std::vector<int>::iterator findSpace(std::vector<int>::iterator first, std::vect
     }
     ++first;
   }
+  return last;
 }
 
 std::pair<std::string, std::string> day09::solve(std::ifstream f)
@@ -57,8 +58,6 @@ std::pair<std::string, std::string> day09::solve(std::ifstream f)
   long long sum = 0;
   for (int i = 0; i < disk.size(); ++i)
     sum += disk.at(i)*i;
-
-
   
   return {std::to_string(sum),""};
 }
