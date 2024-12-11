@@ -27,20 +27,51 @@ std::pair<uint64_t, uint64_t> splitNumber(const uint64_t& x)
 
 std::vector<std::future<int>> threads;
 
-int blink(uint64_t stone, int n, int depth)
+std::unordered_map<uint64_t, uint64_t> results;
+
+int blink(const uint64_t& stone, int n)
 {
-  if (n >= 25)
+  if (n >= 45)
     return 1;
-  std::vector<uint64_t> stones;
   if (stone == 0)
-    return blink(1, n+1, depth);
+  {
+    if (n == 35)
+    {
+      if (results.find(stone) != results.end())
+        return results.at(stone);
+      uint64_t r = blink(1, n+1);
+      results.insert({stone, r});
+      return r;
+    }
+    return blink(1, n+1);
+  }
   else if (getDigitCount(stone) % 2 == 0)
   {
     auto numbers = splitNumber(stone);
-    return blink(numbers.first, n+1, depth) + blink(numbers.second, n+1, depth);
+    if (n == 35)
+    {
+      if (results.find(numbers.first) != results.end() && results.find(numbers.second) != results.end())
+        return results.at(numbers.first) + results.at(numbers.second);
+      uint64_t r1 = blink(numbers.first, n+1);
+      uint64_t r2 = blink(numbers.second, n+1);
+      results.insert({numbers.first, r1});
+      results.insert({numbers.second, r2});
+      return r1+r2;
+    }
+    return blink(numbers.first, n+1) + blink(numbers.second, n+1);
   }
   else
-    return blink(stone*2024, n+1, depth);
+  {
+    if (n == 35)
+    {
+      if (results.find(stone) != results.end())
+        return results.at(stone);
+      uint64_t r = blink(stone*2024, n+1);
+      results.insert({stone, r});
+      return r;
+    }
+    return blink(stone*2024, n+1);
+  }
   return 0;
 }
 
@@ -48,7 +79,7 @@ std::pair<std::string, std::string> day11::solve(std::ifstream f)
 {
   char input;
   std::string number;
-  std::list<uint64_t> stones;
+  std::vector<uint64_t> stones;
   while(f.get(input))
   {
     if (input != ' ')
@@ -63,11 +94,9 @@ std::pair<std::string, std::string> day11::solve(std::ifstream f)
 
   long long sum = 0;
   for (auto stone : stones)
-    sum += blink(stone, 0, 0);
+    threads.push_back(std::async(blink, stone, 0));
   for (auto& thread : threads)
     sum += thread.get();
-
-  //std::vector<std::future<int>> threads; // std::async
 
   long long sum2 = 0;
 
