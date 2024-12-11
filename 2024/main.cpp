@@ -24,31 +24,31 @@ int main(int argc, char** argv)
 {
    std::vector<std::pair<std::string, std::string>(*)(std::ifstream)> dayFunctions =
     {
-      day01::solve,
-      day02::solve,
-      day03::solve,
-      day04::solve,
-      day05::solve,
-      day06::solve,
-      day07::solve,
-      day08::solve,
-      day09::solve,
-      day10::solve,
+      //day01::solve,
+      //day02::solve,
+      //day03::solve,
+      //day04::solve,
+      //day05::solve,
+      //day06::solve,
+      //day07::solve,
+      //day08::solve,
+      //day09::solve,
+      //day10::solve,
       day11::solve,
-      day12::solve,
-      day13::solve,
-      day14::solve,
-      day15::solve,
-      day16::solve,
-      day17::solve,
-      day18::solve,
-      day19::solve,
-      day20::solve,
-      day21::solve,
-      day22::solve,
-      day23::solve,
-      day24::solve,
-      day25::solve,
+      //day12::solve,
+      //day13::solve,
+      //day14::solve,
+      //day15::solve,
+      //day16::solve,
+      //day17::solve,
+      //day18::solve,
+      //day19::solve,
+      //day20::solve,
+      //day21::solve,
+      //day22::solve,
+      //day23::solve,
+      //day24::solve,
+      //day25::solve,
     };
 
   std::cout << "| Day  Part 1               Part 2              Time     Avg 1000  |" << std::endl;
@@ -57,7 +57,7 @@ int main(int argc, char** argv)
   for (auto func : dayFunctions)
   {
     auto start = std::chrono::high_resolution_clock::now();
-    std::string inputFile = std::format("inputs/input{}.txt", i);
+    std::string inputFile = std::format("inputs/input{}.txt", 11);
     auto values = func(std::ifstream(inputFile));
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
