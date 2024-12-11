@@ -38,6 +38,7 @@ std::vector<std::vector<operation>> generatePermutations2(std::vector<operation>
 
 std::pair<std::string, std::string> day07::solve(std::ifstream f)
 {
+  return {"", ""};
   unsigned long long sum = 0, sum2 = 0;
   std::string row;
   while(getline(f, row))
