@@ -24,7 +24,7 @@ int main(int argc, char** argv)
 {
    std::vector<std::pair<std::string, std::string>(*)(std::ifstream)> dayFunctions =
     {
-      //day01::solve,
+      day01::solve,
       //day02::solve,
       //day03::solve,
       //day04::solve,
@@ -34,7 +34,7 @@ int main(int argc, char** argv)
       //day08::solve,
       //day09::solve,
       //day10::solve,
-      day11::solve,
+      //day11::solve,
       //day12::solve,
       //day13::solve,
       //day14::solve,

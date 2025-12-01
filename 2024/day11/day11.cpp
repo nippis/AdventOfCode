@@ -1,14 +1,14 @@
 #include "../solutions.hh"
 #include <thread>
 #include <future>
+#include <stdio.h>
+#include <gmpxx.h>
 
-std::vector<uint64_t> p = []()
+static std::vector<uint64_t> p = []()
 {
   std::vector<uint64_t> p;
   for (int i = 0; i<21; ++i)
-  {
     p.push_back(std::pow(10, i));
-  }
   return p;
 }();
 
@@ -29,48 +29,44 @@ std::vector<std::future<int>> threads;
 
 std::unordered_map<uint64_t, uint64_t> results;
 
+static int m = 35;
 int blink(const uint64_t& stone, int n)
 {
-  if (n >= 45)
+  if (n >= 70)
     return 1;
+  if (n == m)
+    if (results.find(stone) != results.end())
+    {
+      //std::cout << stone << std::endl;
+      return results.at(stone);
+    }
   if (stone == 0)
   {
-    if (n == 35)
+    uint64_t r = blink(1, n+1);
+    if (n == m)
     {
-      if (results.find(stone) != results.end())
-        return results.at(stone);
-      uint64_t r = blink(1, n+1);
       results.insert({stone, r});
-      return r;
     }
-    return blink(1, n+1);
+    return r;
   }
   else if (getDigitCount(stone) % 2 == 0)
   {
     auto numbers = splitNumber(stone);
-    if (n == 35)
+    uint64_t r = blink(numbers.first, n+1) + blink(numbers.second, n+1);
+    if (n == m)
     {
-      if (results.find(numbers.first) != results.end() && results.find(numbers.second) != results.end())
-        return results.at(numbers.first) + results.at(numbers.second);
-      uint64_t r1 = blink(numbers.first, n+1);
-      uint64_t r2 = blink(numbers.second, n+1);
-      results.insert({numbers.first, r1});
-      results.insert({numbers.second, r2});
-      return r1+r2;
+      results.insert({stone, r});
     }
-    return blink(numbers.first, n+1) + blink(numbers.second, n+1);
+    return r;
   }
   else
   {
-    if (n == 35)
+    uint64_t r = blink(stone*2024, n+1);
+    if (n == m)
     {
-      if (results.find(stone) != results.end())
-        return results.at(stone);
-      uint64_t r = blink(stone*2024, n+1);
       results.insert({stone, r});
-      return r;
     }
-    return blink(stone*2024, n+1);
+    return r;
   }
   return 0;
 }
@@ -92,13 +88,16 @@ std::pair<std::string, std::string> day11::solve(std::ifstream f)
   }
   stones.push_back(std::stoi(number));
 
-  long long sum = 0;
+  mpz_class sum = 0;
   for (auto stone : stones)
-    threads.push_back(std::async(blink, stone, 0));
-  for (auto& thread : threads)
-    sum += thread.get();
+    mpz_add_ui += blink(stone, 0);
+    //threads.push_back(std::async(blink, stone, 0));
+  for (auto& thread : threads);
+    //sum += thread.get();
 
-  long long sum2 = 0;
+  printf ("n = ");
+  mpz_out_str(stdout,10,sum);
+  printf ("\n");
 
-  return {std::to_string(sum), std::to_string(sum2)};
+  return {"", ""};
 }
