@@ -1,6 +1,11 @@
 #include "../solutions.hh"
 #include <cmath>
 
+unsigned long long powi(unsigned long long base, unsigned long long exp)
+{
+  return (exp == 0) ? 1 : base * powi(base, exp-1);
+}
+
 std::pair<std::string, std::string> day3::solve(std::ifstream f)
 {
   unsigned int result1 = 0;
@@ -15,7 +20,7 @@ std::pair<std::string, std::string> day3::solve(std::ifstream f)
     for (int i = 11; i >= 0; i--)
     {
       digitIterator = std::max_element(digitIterator, row.end()-i);
-      result2 += (*digitIterator++ - 48) * pow(10, i);
+      result2 += (*digitIterator++ - 48) * powi(10, i);
     }
   }
   return {std::to_string(result1), std::to_string(result2)};
