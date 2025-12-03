@@ -3,33 +3,42 @@
 
 using int_type = unsigned long long;
 
-int_type is_invalid(std::string a)
+bool is_invalid1(std::string_view a)
 {
-  for (int i = 1; i <= a.length()/2; i++)
-  {
-    if (a.length() % i != 0)
-      continue;
-    std::vector<std::string> sets;
-    for (int j = 0; j < a.length() / i; j++)
-    {
-      sets.push_back(a.substr(j*i, i));
-    }
-    if (std::all_of(sets.begin(), sets.end(), [=](auto i){return i == sets.at(0);}))
-    {
-      return stoll(a);
-    }
-  }
-  return 0;
+  return (a.substr(0, a.length()/2) == a.substr(a.length()/2));
 }
 
-std::pair<int_type, int_type> find_invalid_ids(const std::string& Begin, const std::string& End)
+bool is_invalid2(std::string_view a)
 {
-  std::pair<int_type, int_type> invalids = {0,0};
+  for (int seqLen = 1; seqLen <= a.length()/2; seqLen++)
+  {
+    if (a.length() % seqLen != 0)
+      continue;
+    std::string_view prev;
+    bool valid = false;
+    for (int seqPos = 0; seqPos < a.length() / seqLen; seqPos++)
+    {
+      if (!prev.empty() && a.substr(seqPos*seqLen, seqLen) != prev)
+      {
+        valid = true;
+        break;
+      }
+      prev = a.substr(seqPos*seqLen, seqLen);
+    }
+    if (!valid)
+      return true;
+  }
+  return false;
+}
+
+template <typename Func>
+int_type find_invalid_ids(const std::string& Begin, const std::string& End, Func func)
+{
+  int_type invalids = 0;
   for (int_type i = stoll(Begin); i <= stoll(End); i++)
   {
     std::string id = std::to_string(i);
-    invalids.first += (id.substr(0, id.length()/2) == id.substr(id.length()/2)) ? stoll(id) : 0;
-    invalids.second += is_invalid(id) ? i : 0;
+    invalids += func(id) ? i : 0;
   }
   return invalids;
 }
@@ -46,9 +55,8 @@ std::pair<std::string, std::string> day2::solve(std::ifstream f)
   {
     if (a == ',')
     {
-      auto invalids = find_invalid_ids(first, second);
-      result1 += invalids.first;
-      result2 += invalids.second;
+      result1 += find_invalid_ids(first, second, is_invalid1);
+      result2 += find_invalid_ids(first, second, is_invalid2);
       first.clear();
       second.clear();
       temp = &first;
@@ -62,9 +70,8 @@ std::pair<std::string, std::string> day2::solve(std::ifstream f)
       temp->push_back(a);
     }
   }
-  auto invalids = find_invalid_ids(first, second);
-  result1 += invalids.first;
-  result2 += invalids.second;
+  result1 += find_invalid_ids(first, second, is_invalid1);
+  result2 += find_invalid_ids(first, second, is_invalid2);
 
   return {std::to_string(result1), std::to_string(result2)};
 }
