@@ -1,4 +1,4 @@
-CXXFLAGS = -std=c++20 -O2 -Wno-narrowing
+CXXFLAGS = -std=c++23 -O2 -Wno-narrowing
 CXX = g++
 
 ifeq ($(OS),Windows_NT)
