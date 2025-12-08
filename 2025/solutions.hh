@@ -12,6 +12,7 @@
 #include <string>
 #include <set>
 
+std::string whitespace(std::size_t length);
 std::string whitespace(int length);
 
 namespace day1  {std::pair<std::string, std::string> solve(std::ifstream file);}
