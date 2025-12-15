@@ -9,15 +9,12 @@ endif
 
 all: main
 
-main: main.o solutions 	day01.o day02.o day03.o day04.o day05.o day06.o \
+main: main.o solutions.hh day01.o day02.o day03.o day04.o day05.o day06.o \
 											  day07.o day08.o day09.o day10.o day11.o day12.o
 	$(CXX) $(CXXFLAGS) -o $(output) *.o
 
 main.o: main.cpp
 	$(CXX) $(CXXFLAGS) -c main.cpp
-
-solutions: utility.cpp solutions.hh
-	$(CXX) $(CXXFLAGS) -c utility.cpp
 
 day01.o: solutions/day01.cpp solutions.hh
 	$(CXX) $(CXXFLAGS) -c solutions/day01.cpp

@@ -1,19 +1,16 @@
 #ifndef SOLUTION_HH
 #define SOLUTION_HH
 
-#include <utility>
-#include <vector>
-#include <deque>
+#include <algorithm>
 #include <array>
-#include <unordered_set>
+#include <deque>
 #include <fstream>
 #include <iostream>
-#include <algorithm>
-#include <string>
 #include <set>
-
-std::string whitespace(std::size_t length);
-std::string whitespace(int length);
+#include <string>
+#include <unordered_set>
+#include <utility>
+#include <vector>
 
 using PuzzleResult = std::pair<std::string, std::string>;
 
@@ -29,4 +26,5 @@ namespace day9  {PuzzleResult solve(std::ifstream file);}
 namespace day10 {PuzzleResult solve(std::ifstream file);}
 namespace day11 {PuzzleResult solve(std::ifstream file);}
 namespace day12 {PuzzleResult solve(std::ifstream file);}
-#endif
+
+#endif // SOLUTION_HH
