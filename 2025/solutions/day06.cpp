@@ -9,6 +9,7 @@ namespace ranges = std::ranges;
 
 std::pair<std::string, std::string> day6::solve(std::ifstream f)
 {
+	/*
   std::string line;
   std::vector<std::vector<std::string>> allLines;
   while (getline(f, line))
@@ -42,4 +43,6 @@ std::pair<std::string, std::string> day6::solve(std::ifstream f)
 
   int_type result1 = ranges::fold_left(resultVector, (int_type)0, std::plus<int_type>());
   return {std::to_string(result1),""};
+	*/
+	return {"",""};
 }
